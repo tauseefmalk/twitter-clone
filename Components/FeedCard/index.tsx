@@ -54,7 +54,7 @@ const FeedCard: React.FC = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default FeedCard;
