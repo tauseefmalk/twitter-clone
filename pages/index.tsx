@@ -12,7 +12,7 @@ import React, { useCallback } from "react";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import FeedCard from "@/Components/FeedCard";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
-import { CgMoreO } from "react-icons/cg";
+import { CgMoreAlt, CgMoreO } from "react-icons/cg";
 import toast from "react-hot-toast";
 import { graphqlClient } from "@/clients/api";
 import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
@@ -132,7 +132,7 @@ export default function Home() {
           Tweet
         </button>
         {user && (
-          <div className="flex gap-2 items-center absolute bottom-5 border border-gray-800 p-2 hover:bg-gray-800 rounded-full">
+          <div className="flex gap-2 items-center mr-2 absolute bottom-5 border border-gray-800 p-2 hover:bg-gray-800 rounded-full">
             {user && user.profileImageURL && (
               <Image
                 className="rounded-full"
@@ -142,10 +142,15 @@ export default function Home() {
                 width={40}
               />
             )}
-            <div className="flex ">
-              <h1 className="text-md font-semibold">
-                {user.firstName} {user.lastName}
-              </h1>
+            <div className="flex justify-between gap-2 ">
+              <div>
+                <h1 className="text-md font-semibold">
+                  {user.firstName} {user.lastName}
+                </h1>
+              </div>
+              <div>
+                <CgMoreAlt size={22} color="gray" />
+              </div>
             </div>
           </div>
         )}
