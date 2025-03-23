@@ -1,5 +1,6 @@
 import { Tweet } from "@/gql/graphql";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { BiMessageRounded } from "react-icons/bi";
 import { CgMoreAlt } from "react-icons/cg";
@@ -19,7 +20,7 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
         <div className="col-span-1 ">
           {data.author.profileImageURL && (
             <Image
-            className="rounded-full"
+              className="rounded-full"
               src={data.author.profileImageURL}
               alt={data.author.firstName}
               height={60}
@@ -30,7 +31,7 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
         <div className="col-span-11 ml-2">
           <div className="justify-between flex">
             <div className="flex gap-1 text-sm">
-              <h1 className="font-semibold">{data.author.firstName} {data.author.lastName}</h1>
+             <Link href={`/${data.author.id}`}> <h1 className="font-semibold">{data.author.firstName} {data.author.lastName}</h1></Link>
               <span className="text-gray-500 ">@dejavu</span>
               <span className="text-gray-500 font-light ">10h</span>
             </div>
@@ -38,9 +39,7 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
               <CgMoreAlt size={22} />
             </div>
           </div>
-          <p className="mr-5">
-            {data.content}
-          </p>
+          <p className="mr-5">{data.content}</p>
           <div className="flex gap-18 sm:gap-24 text-gray-600 text-lg  mt-4">
             <div>
               <BiMessageRounded />
