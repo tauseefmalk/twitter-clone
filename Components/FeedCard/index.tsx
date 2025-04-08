@@ -40,6 +40,7 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
             </div>
           </div>
           <p className="mr-5">{data.content}</p>
+          {data.imageUrl && <Image src={data.imageUrl} alt="tweet-image" height={300} width={300}/>} 
           <div className="flex gap-18 sm:gap-24 text-gray-600 text-lg  mt-4">
             <div>
               <BiMessageRounded />
