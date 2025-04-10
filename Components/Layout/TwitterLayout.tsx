@@ -1,4 +1,3 @@
-
 import { useCurrentUser } from "@/hooks/user";
 import React, { useCallback, useMemo } from "react";
 import Image from "next/image";
@@ -37,7 +36,6 @@ const TwitterLayout: React.FC<TwitterLayoutProps> = (props) => {
   const router = useRouter();
 
   console.log(router.query);
-  
 
   const sidebarMenuItems: TwitterSideBarButton[] = useMemo(
     () => [
@@ -131,14 +129,13 @@ const TwitterLayout: React.FC<TwitterLayoutProps> = (props) => {
             <div className="mt-6 text-lg flex flex-col justify-start font-bold  ">
               <ul className="">
                 {sidebarMenuItems.map((item) => (
-                  <li
-                    key={item.title}
-                  >
-                    <Link href={item.link}                     
-                    className="flex mb-2 justify-start  items-center gap-4 hover:bg-gray-800 rounded-full px-3 cursor-pointer  py-1  transition-all w-fit"
+                  <li key={item.title}>
+                    <Link
+                      href={item.link}
+                      className="flex mb-2 justify-start  items-center gap-4 hover:bg-gray-800 rounded-full px-3 cursor-pointer  py-1  transition-all w-fit"
                     >
-                    <span className="text-xl">{item.icon}</span>
-                    <span className="hidden sm:inline">{item.title}</span>
+                      <span className="text-xl">{item.icon}</span>
+                      <span className="hidden sm:inline">{item.title}</span>
                     </Link>
                   </li>
                 ))}
@@ -176,7 +173,7 @@ const TwitterLayout: React.FC<TwitterLayoutProps> = (props) => {
           {props.children}
         </div>
         <div className="col-span-[0] sm:col-span-3 p-5">
-          {!user && (
+          {!user ? (
             <div className="border border-gray-800 rounded-lg p-5 w-xs shadow-md">
               <div>
                 <h1 className="font-semibold text-lg">New to Twitter</h1>
@@ -187,6 +184,34 @@ const TwitterLayout: React.FC<TwitterLayoutProps> = (props) => {
               <div className="my-4">
                 <GoogleLogin onSuccess={handleLoginWithGoogle} />
               </div>
+            </div>
+          ) : (
+            <div className="border border-gray-800 rounded-lg p-5 w-xs shadow-md">
+              <h1 className="font-semibold text-lg">Users you may know </h1>
+              {user?.recommendedUsers?.map((el) => (
+                <div key={el?.id} className="flex gap-2 items-center my-2">
+                  {el?.profileImageURL && (
+                    <Image
+                      src={el?.profileImageURL}
+                      alt="avatar"
+                      className="rounded-full"
+                      width={50}
+                      height={50}
+                    />
+                  )}
+                  <div>
+                    <div className="text-lg">
+                      {el?.firstName} {el?.lastName}
+                    </div>
+                    <Link
+                      href={`${el?.id}`}
+                      className="bg-white text-black text-sm px-3 py-2 w-full rounded-full"
+                    >
+                      View
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
