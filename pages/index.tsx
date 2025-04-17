@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import FeedCard from "@/Components/FeedCard";
 import { useCurrentUser } from "@/hooks/user";
 import { IoImageOutline } from "react-icons/io5";
@@ -11,7 +11,6 @@ import {
   getAllTweetsQuery,
   getSignedURLForTweetQuery,
 } from "@/graphql/query/tweet";
-import { graphql } from "@/gql";
 import { graphqlClient } from "@/clients/api";
 import axios from "axios";
 import toast from "react-hot-toast";

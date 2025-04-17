@@ -8,7 +8,7 @@ import { useCurrentUser } from "@/hooks/user";
 import { useQueryClient } from "@tanstack/react-query";
 import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
 import { IoArrowBackOutline } from "react-icons/io5";
 
@@ -16,8 +16,8 @@ interface ServerProps {
   userInfo?: User;
 }
 
-const userProfilePage: NextPage<ServerProps> = (props) => {
-  const router = useRouter();
+const UserProfilePage: NextPage<ServerProps> = (props) => {
+  // const router = useRouter();
   const { user: currentUser } = useCurrentUser();
   const queryClient = useQueryClient();
 
@@ -122,4 +122,4 @@ export const getServerSideProps: GetServerSideProps<ServerProps> = async (
   };
 };
 
-export default userProfilePage;
+export default UserProfilePage;
